@@ -11,7 +11,7 @@ public class GreetingController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
-    // teste 123
+    // teste 123 aquele teste 123
 
     @RequestMapping("/greeting")
     public Greeting greeting(
