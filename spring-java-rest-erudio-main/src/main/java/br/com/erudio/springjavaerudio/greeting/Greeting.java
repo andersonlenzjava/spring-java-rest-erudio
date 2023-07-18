@@ -1,4 +1,4 @@
-package br.com.erudio.springjavaerudio;
+package br.com.erudio.springjavaerudio.greeting;
 
 public class Greeting {
 

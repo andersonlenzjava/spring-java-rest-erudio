@@ -1,4 +1,4 @@
-package br.com.erudio.springjavaerudio;
+package br.com.erudio.springjavaerudio.greeting;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +11,6 @@ public class GreetingController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
-    // teste 123 aquele teste 123
 
     @RequestMapping("/greeting")
     public Greeting greeting(
