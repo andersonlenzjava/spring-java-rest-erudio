@@ -27,6 +27,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    // se outras exceções que lançam bad request ele não vai ser lançado e vai cair aqui
     @ExceptionHandler(UnsupportedMathOperationException.class)
     public final ResponseEntity<ExceptionResponse> hadleBadRequestExceptions (
             Exception ex, WebRequest request) {
