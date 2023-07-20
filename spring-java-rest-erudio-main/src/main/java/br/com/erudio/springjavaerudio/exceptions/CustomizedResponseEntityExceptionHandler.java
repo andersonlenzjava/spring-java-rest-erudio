@@ -1,5 +1,6 @@
 package br.com.erudio.springjavaerudio.exceptions;
 
+import br.com.erudio.springjavaerudio.exceptions.handler.ResurceNotFoundExceptionException;
 import br.com.erudio.springjavaerudio.exceptions.handler.UnsupportedMathOperationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // se outras exceções que lançam bad request ele não vai ser lançado e vai cair aqui
+    @ExceptionHandler(ResurceNotFoundExceptionException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions (
+            Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
 
