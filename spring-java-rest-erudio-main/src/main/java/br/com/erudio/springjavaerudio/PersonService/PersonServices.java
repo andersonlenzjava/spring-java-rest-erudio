@@ -1,6 +1,6 @@
 package br.com.erudio.springjavaerudio.PersonService;
 
-import br.com.erudio.springjavaerudio.PersonRepository;
+import br.com.erudio.springjavaerudio.repository.PersonRepository;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.data.vo.v2.PersonVO2;
 import br.com.erudio.springjavaerudio.exceptions.handler.ResurceNotFoundExceptionException;
