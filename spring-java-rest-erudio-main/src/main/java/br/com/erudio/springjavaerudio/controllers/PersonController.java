@@ -2,6 +2,7 @@ package br.com.erudio.springjavaerudio.controllers;
 
 import br.com.erudio.springjavaerudio.PersonService.PersonServices;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
+import br.com.erudio.springjavaerudio.data.vo.v2.PersonVO2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,12 @@ public class PersonController {
     public PersonVO create(
             @RequestBody() PersonVO person) throws Exception {
         return services.create(person);
+    }
+
+    @PostMapping("/v2")
+    public PersonVO2 createV2(
+            @RequestBody() PersonVO2 person) throws Exception {
+        return services.createV2(person);
     }
 
     @PutMapping()

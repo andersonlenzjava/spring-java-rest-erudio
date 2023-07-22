@@ -1,6 +1,7 @@
 package br.com.erudio.springjavaerudio.data.vo.v2;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class PersonVO2 implements Serializable {
@@ -10,7 +11,7 @@ public class PersonVO2 implements Serializable {
     private String lastName;
     private String Adress;
     private String gender;
-    private Date gender;
+    private Date birthDay;
 
     public PersonVO2() {
     }
@@ -35,6 +36,10 @@ public class PersonVO2 implements Serializable {
         return Adress;
     }
 
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -55,16 +60,20 @@ public class PersonVO2 implements Serializable {
         Adress = adress;
     }
 
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonVO2 person = (PersonVO2) o;
-        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(gender, person.gender);
+        PersonVO2 personVO2 = (PersonVO2) o;
+        return Objects.equals(id, personVO2.id) && Objects.equals(firstName, personVO2.firstName) && Objects.equals(lastName, personVO2.lastName) && Objects.equals(Adress, personVO2.Adress) && Objects.equals(gender, personVO2.gender) && Objects.equals(birthDay, personVO2.birthDay);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, gender);
+        return Objects.hash(id, firstName, lastName, Adress, gender, birthDay);
     }
 }
