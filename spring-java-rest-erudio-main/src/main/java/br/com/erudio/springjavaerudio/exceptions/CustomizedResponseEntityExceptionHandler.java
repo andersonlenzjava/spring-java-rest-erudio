@@ -1,5 +1,6 @@
 package br.com.erudio.springjavaerudio.exceptions;
 
+import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;
 import br.com.erudio.springjavaerudio.exceptions.handler.ResurceNotFoundExceptionException;
 import br.com.erudio.springjavaerudio.exceptions.handler.UnsupportedMathOperationException;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    //criação desta classe durante a implementação dos testes
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions (
+            Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
 
