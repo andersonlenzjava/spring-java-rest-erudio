@@ -2,7 +2,7 @@ package br.com.erudio.springjavaerudio.unittest.mapper;
 
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.mapper.DozerMapper;
-import br.com.erudio.springjavaerudio.model.Person;
+import br.com.erudio.springjavaerudio.model.person.Person;
 import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
