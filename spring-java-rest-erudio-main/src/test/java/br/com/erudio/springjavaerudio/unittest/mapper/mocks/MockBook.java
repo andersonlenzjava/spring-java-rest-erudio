@@ -1,56 +1,62 @@
 package br.com.erudio.springjavaerudio.unittest.mapper.mocks;
 
+import br.com.erudio.springjavaerudio.data.vo.v1.BookVO;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
+import br.com.erudio.springjavaerudio.model.book.Book;
 import br.com.erudio.springjavaerudio.model.person.Person;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockPerson {
+public class MockBook {
 
+    //mocka a entidade
+    public Book mockEntity() {
+        return mockEntity(1);
+    }
 
-    public Person mockEntity() {
-        return mockEntity(0);
+    //micka o VO
+    public BookVO mockVO() {
+        return mockVO(1);
+    }
+
+    public List<Book> mockEntityList() {
+        List<Book> books = new ArrayList<Book>();
+        for (int i = 0; i < 14; i++) {
+            books.add(mockEntity(i));
+        }
+        return books;
+    }
+
+    public List<BookVO> mockVOList() {
+        List<BookVO> books = new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            books.add(mockVO(i));
+        }
+        return books;
     }
     
-    public PersonVO mockVO() {
-        return mockVO(0);
+    public Book mockEntity(Integer number) {
+        Book book = new Book();
+        book.setId(number.longValue());
+        book.setTitle("Title test" + number);
+        book.setAuthor("Author name" + number);
+        book.setLaunchDate(LocalDate.of(2010, Month.APRIL, 25));
+        book.setPrice(BigDecimal.valueOf(150l));
+        return book;
     }
 
-    public List<Person> mockEntityList() {
-        List<Person> persons = new ArrayList<Person>();
-        for (int i = 0; i < 14; i++) {
-            persons.add(mockEntity(i));
-        }
-        return persons;
-    }
-
-    public List<PersonVO> mockVOList() {
-        List<PersonVO> persons = new ArrayList<>();
-        for (int i = 0; i < 14; i++) {
-            persons.add(mockVO(i));
-        }
-        return persons;
-    }
-    
-    public Person mockEntity(Integer number) {
-        Person person = new Person();
-        person.setAdress("Addres Test" + number);
-        person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
-        person.setId(number.longValue());
-        person.setLastName("Last Name Test" + number);
-        return person;
-    }
-
-    public PersonVO mockVO(Integer number) {
-        PersonVO person = new PersonVO();
-        person.setAdress("Addres Test" + number);
-        person.setFirstName("First Name Test" + number);
-        person.setGender(((number % 2)==0) ? "Male" : "Female");
-        person.setKey(number.longValue());
-        person.setLastName("Last Name Test" + number);
-        return person;
+    public BookVO mockVO(Integer number) {
+        BookVO book = new BookVO();
+        book.setKey(number.longValue());
+        book.setTitle("Title test" + number);
+        book.setAuthor("Author name" + number);
+        book.setLaunchDate(LocalDate.of(2010, Month.APRIL, 25));
+        book.setPrice(BigDecimal.valueOf(150l));
+        return book;
     }
 
 }

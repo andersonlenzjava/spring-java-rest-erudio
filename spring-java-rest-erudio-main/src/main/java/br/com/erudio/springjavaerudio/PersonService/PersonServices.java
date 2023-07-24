@@ -8,7 +8,7 @@ import br.com.erudio.springjavaerudio.data.vo.v2.PersonVO2;
 import br.com.erudio.springjavaerudio.exceptions.handler.ResurceNotFoundExceptionException;
 import br.com.erudio.springjavaerudio.mapper.DozerMapper;
 import br.com.erudio.springjavaerudio.mapper.custom.PersonMapper;
-import br.com.erudio.springjavaerudio.model.Person;
+import br.com.erudio.springjavaerudio.model.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -90,7 +90,7 @@ public class PersonServices {
         entity.setGender(person.getGender());
 
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
-        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
+//        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
     }
 

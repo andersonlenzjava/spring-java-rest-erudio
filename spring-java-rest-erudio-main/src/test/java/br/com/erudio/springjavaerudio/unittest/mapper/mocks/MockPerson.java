@@ -1,7 +1,7 @@
 package br.com.erudio.springjavaerudio.unittest.mapper.mocks;
 
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
-import br.com.erudio.springjavaerudio.model.Person;
+import br.com.erudio.springjavaerudio.model.person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class MockPerson {
     public PersonVO mockVO() {
         return mockVO(0);
     }
-    
+
     public List<Person> mockEntityList() {
         List<Person> persons = new ArrayList<Person>();
         for (int i = 0; i < 14; i++) {

@@ -1,4 +1,4 @@
-package br.com.erudio.springjavaerudio.model;
+package br.com.erudio.springjavaerudio.model.person;
 
 import jakarta.persistence.*;
 

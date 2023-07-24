@@ -1,10 +1,15 @@
 package br.com.erudio.springjavaerudio.PersonService.mockito.services;
 
+import br.com.erudio.springjavaerudio.BooksService.BooksService;
 import br.com.erudio.springjavaerudio.PersonService.PersonServices;
+import br.com.erudio.springjavaerudio.data.vo.v1.BookVO;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;
+import br.com.erudio.springjavaerudio.model.book.Book;
 import br.com.erudio.springjavaerudio.model.person.Person;
+import br.com.erudio.springjavaerudio.repository.BookRepository;
 import br.com.erudio.springjavaerudio.repository.PersonRepository;
+import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockBook;
 import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +20,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
-// importação manual disto
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -29,83 +30,82 @@ import static org.mockito.Mockito.when;
 // mapear senário feliz e senário de exception
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-class PersonServicesTest {
+class BookServicesTest {
 
     //inserção dos objetos já mocados para teste
-    MockPerson input;
+    MockBook input;
 
     // injeção do service
     @InjectMocks
-    private PersonServices service;
+    private BooksService service;
 
     // injeção do mock de repository
     @Mock
-    PersonRepository repository;
+    BookRepository repository;
 
     @BeforeEach
     void setUp() {
-        input = new MockPerson();
+        input = new MockBook();
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void findAll() {
         // peça a lista do mock
-        List<Person> ListEntity = input.mockEntityList();
+        List<Book> ListEntity = input.mockEntityList();
 
         // vincula o retorno do repository a este objeto mockado
         when(repository.findAll()).thenReturn(ListEntity);
 
         //retorno do metodo testar de acordo com a service dentro dele
-        var people = service.findAll();
-        assertNotNull(people);
-        assertEquals(14, people.size());
+        var book = service.findAll();
+        assertNotNull(book);
+        assertEquals(14, book.size());
 
         //------------------------Fim teste inicial -- inicio teste dentro da lista em elementos individuais aleatórios
 
         //retorno do metodo testar de acordo com a service dentro dele
-        var personOne = people.get(1);
-        assertNotNull(personOne);
-        assertNotNull(personOne.getKey());
-        assertNotNull(personOne.getLinks());
+        var bookOne = book.get(1);
+        assertNotNull(bookOne);
+        assertNotNull(bookOne.getKey());
+        assertNotNull(bookOne.getLinks());
 
-        assertTrue(personOne.toString().contains("</person/v1/1>;rel=\"self\""));
-        assertEquals("Addres Test1",personOne.getAdress());
-        assertEquals("First Name Test1",personOne.getFirstName());
-        assertEquals("Last Name Test1",personOne.getLastName());
-        assertEquals("Female",personOne.getGender());
-
-        //retorno do metodo testar de acordo com a service dentro dele
-        var personFour = people.get(4);
-        assertNotNull(personFour);
-        assertNotNull(personFour.getKey());
-        assertNotNull(personFour.getLinks());
-
-        assertTrue(personFour.toString().contains("</person/v1/4>;rel=\"self\""));
-        assertEquals("Addres Test4",personFour.getAdress());
-        assertEquals("First Name Test4",personFour.getFirstName());
-        assertEquals("Last Name Test4",personFour.getLastName());
-        assertEquals("Male",personFour.getGender());
+        assertTrue(bookOne.toString().contains("</book/v1/1>;rel=\"self\""));
+        assertEquals("Title test1", bookOne.getTitle());
+        assertEquals("Author name1", bookOne.getAuthor());
+        assertEquals("2010-04-25", bookOne.getLaunchDate().toString());
+        assertEquals("150", bookOne.getPrice().toString());
 
         //retorno do metodo testar de acordo com a service dentro dele
-        var personSeven = people.get(7);
-        assertNotNull(personSeven);
-        assertNotNull(personSeven.getKey());
-        assertNotNull(personSeven.getLinks());
+        var bookFour = book.get(4);
+        assertNotNull(bookFour);
+        assertNotNull(bookFour.getKey());
+        assertNotNull(bookFour.getLinks());
 
-        assertTrue(personSeven.toString().contains("</person/v1/7>;rel=\"self\""));
-        assertEquals("Addres Test7",personSeven.getAdress());
-        assertEquals("First Name Test7",personSeven.getFirstName());
-        assertEquals("Last Name Test7",personSeven.getLastName());
-        assertEquals("Female",personSeven.getGender());
+        assertTrue(bookFour.toString().contains("</book/v1/4>;rel=\"self\""));
+        assertEquals("Title test4", bookFour.getTitle());
+        assertEquals("Author name4", bookFour.getAuthor());
+        assertEquals("2010-04-25", bookFour.getLaunchDate().toString());
+        assertEquals("150", bookFour.getPrice().toString());
 
+        //retorno do metodo testar de acordo com a service dentro dele
+        var bookSeven = book.get(7);
+        assertNotNull(bookSeven);
+        assertNotNull(bookSeven.getKey());
+        assertNotNull(bookSeven.getLinks());
+
+        assertTrue(bookSeven.toString().contains("</book/v1/7>;rel=\"self\""));
+        assertEquals("Title test7", bookSeven.getTitle());
+        assertEquals("Author name7", bookSeven.getAuthor());
+        assertEquals("2010-04-25", bookSeven.getLaunchDate().toString());
+        assertEquals("150", bookSeven.getPrice().toString());
     }
 
     // a hora que for fazer findbyid o mockito retorna um mock (fixo) ao invés de um valor real
     // ver se este método está adicionando o link hateos
     @Test
     void findById() {
-        Person entity = input.mockEntity(1);
+        Book entity = input.mockEntity(1);
         // criação de uma entidade cópia
         entity.setId(1L);
 
@@ -118,11 +118,11 @@ class PersonServicesTest {
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
         System.out.println(result.toString());
-        assertTrue(result.toString().contains("</person/v1/1>;rel=\"self\""));
-        assertEquals("Addres Test1",result.getAdress());
-        assertEquals("First Name Test1",result.getFirstName());
-        assertEquals("Last Name Test1",result.getLastName());
-        assertEquals("Female",result.getGender());
+        assertTrue(result.toString().contains("</book/v1/1>;rel=\"self\""));
+        assertEquals("Title test1", result.getTitle());
+        assertEquals("Author name1", result.getAuthor());
+        assertEquals("2010-04-25", result.getLaunchDate().toString());
+        assertEquals("150", result.getPrice().toString());
     }
 
     @Test
@@ -131,13 +131,13 @@ class PersonServicesTest {
         // fazer o mock dos objetos interessados considerando os seus métodos
 
         // criar objeto e mocar dados
-        Person entity = input.mockEntity(1);
+        Book entity = input.mockEntity(1);
         // criação de uma entidade cópia
-        Person persisted = entity;
+        Book persisted = entity;
         entity.setId(1L);
 
         // mockar person VO
-        PersonVO vo = input.mockVO(1);
+        BookVO vo = input.mockVO(1);
         vo.setKey(1L);
 
         // vincula o retorno do repository a este objeto mockado
@@ -149,11 +149,11 @@ class PersonServicesTest {
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
 
-        assertTrue(result.toString().contains("</person/v1/1>;rel=\"self\""));
-        assertEquals("Addres Test1",result.getAdress());
-        assertEquals("First Name Test1",result.getFirstName());
-        assertEquals("Last Name Test1",result.getLastName());
-        assertEquals("Female",result.getGender());
+        assertTrue(result.toString().contains("</book/v1/1>;rel=\"self\""));
+        assertEquals("Title test1", result.getTitle());
+        assertEquals("Author name1", result.getAuthor());
+        assertEquals("2010-04-25", result.getLaunchDate().toString());
+        assertEquals("150", result.getPrice().toString());
     }
 
     @Test
@@ -177,13 +177,13 @@ class PersonServicesTest {
         // fazer o mock dos objetos interessados considerando os seus métodos
 
         // criar objeto e mocar dados
-        Person entity = input.mockEntity(1);
+        Book entity = input.mockEntity(1);
         // criação de uma entidade cópia
-        Person persisted = entity;
+        Book persisted = entity;
         entity.setId(1L);
 
         // mockar person VO
-        PersonVO vo = input.mockVO(1);
+        BookVO vo = input.mockVO(1);
         vo.setKey(1L);
 
         // vincula o retorno do repository a este objeto mockado
@@ -197,10 +197,10 @@ class PersonServicesTest {
         assertNotNull(result.getLinks());
 
 //        assertTrue(result.toString().contains("</person/v1/1>;rel=\"self\""));
-        assertEquals("Addres Test1",result.getAdress());
-        assertEquals("First Name Test1",result.getFirstName());
-        assertEquals("Last Name Test1",result.getLastName());
-        assertEquals("Female",result.getGender());
+        assertEquals("Title test1", result.getTitle());
+        assertEquals("Author name1", result.getAuthor());
+        assertEquals("2010-04-25", result.getLaunchDate().toString());
+        assertEquals("150", result.getPrice().toString());
     }
 
     @Test
@@ -220,7 +220,7 @@ class PersonServicesTest {
 
     @Test
     void delete() {
-        Person entity = input.mockEntity(1);
+        Book entity = input.mockEntity(1);
         // criação de uma entidade cópia
         entity.setId(1L);
 

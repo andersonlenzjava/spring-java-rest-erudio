@@ -1,8 +1,9 @@
 package br.com.erudio.springjavaerudio.unittest.mapper;
 
-import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
+import br.com.erudio.springjavaerudio.data.vo.v1.BookVO;
 import br.com.erudio.springjavaerudio.mapper.DozerMapper;
-import br.com.erudio.springjavaerudio.model.person.Person;
+import br.com.erudio.springjavaerudio.model.book.Book;
+import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockBook;
 import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,88 +12,88 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DozerConverterTest {
-    
-    MockPerson inputObject;
+public class DozerConverterTestBook {
+
+    MockBook inputObject;
 
     @BeforeEach
     public void setUp() {
-        inputObject = new MockPerson();
+        inputObject = new MockBook();
     }
 
     @Test
     public void parseEntityToVOTest() {
-        PersonVO output = DozerMapper.parseObject(inputObject.mockEntity(), PersonVO.class);
+        BookVO output = DozerMapper.parseObject(inputObject.mockEntity(), BookVO.class);
         assertEquals(Long.valueOf(0L), output.getKey());
-        assertEquals("First Name Test0", output.getFirstName());
-        assertEquals("Last Name Test0", output.getLastName());
-        assertEquals("Addres Test0", output.getAdress());
-        assertEquals("Male", output.getGender());
+        assertEquals("Title test0", output.getTitle());
+        assertEquals("Author name0", output.getAuthor());
+        assertEquals("2010-04-25", output.getLaunchDate());
+        assertEquals("150", output.getPrice());
     }
 
     @Test
     public void parseEntityListToVOListTest() {
-        List<PersonVO> outputList = DozerMapper.parseListObjects(inputObject.mockEntityList(), PersonVO.class);
-        PersonVO outputZero = outputList.get(0);
-        
+        List<BookVO> outputList = DozerMapper.parseListObjects(inputObject.mockEntityList(), BookVO.class);
+        BookVO outputZero = outputList.get(0);
+
         assertEquals(Long.valueOf(0L), outputZero.getKey());
-        assertEquals("First Name Test0", outputZero.getFirstName());
-        assertEquals("Last Name Test0", outputZero.getLastName());
-        assertEquals("Addres Test0", outputZero.getAdress());
-        assertEquals("Male", outputZero.getGender());
-        
-        PersonVO outputSeven = outputList.get(7);
-        
-        assertEquals(Long.valueOf(7L), outputSeven.getKey());
-        assertEquals("First Name Test7", outputSeven.getFirstName());
-        assertEquals("Last Name Test7", outputSeven.getLastName());
-        assertEquals("Addres Test7", outputSeven.getAdress());
-        assertEquals("Female", outputSeven.getGender());
-        
-        PersonVO outputTwelve = outputList.get(12);
-        
-        assertEquals(Long.valueOf(12L), outputTwelve.getKey());
-        assertEquals("First Name Test12", outputTwelve.getFirstName());
-        assertEquals("Last Name Test12", outputTwelve.getLastName());
-        assertEquals("Addres Test12", outputTwelve.getAdress());
-        assertEquals("Male", outputTwelve.getGender());
+        assertEquals("Title test0", outputZero.getTitle());
+        assertEquals("Author name0", outputZero.getAuthor());
+        assertEquals("2010-04-25", outputZero.getLaunchDate());
+        assertEquals("150", outputZero.getPrice());
+
+        BookVO outputFive = outputList.get(5);
+
+        assertEquals(Long.valueOf(5L), outputFive.getKey());
+        assertEquals("Title test5", outputFive. getTitle());
+        assertEquals("Author name5", outputFive.getAuthor());
+        assertEquals("2010-04-25", outputFive.getLaunchDate());
+        assertEquals("150", outputFive.getPrice());
+
+        BookVO outputTen = outputList.get(10);
+
+        assertEquals(Long.valueOf(10L), outputTen.getKey());
+        assertEquals("Title test10", outputTen.getTitle());
+        assertEquals("Author name10", outputTen.getAuthor());
+        assertEquals("2010-04-25", outputTen.getLaunchDate());
+        assertEquals("150", outputTen.getPrice());
     }
 
     @Test
     public void parseVOToEntityTest() {
-        Person output = DozerMapper.parseObject(inputObject.mockVO(), Person.class);
+        Book output = DozerMapper.parseObject(inputObject.mockVO(), Book.class);
         assertEquals(Long.valueOf(0L), output.getId());
-        assertEquals("First Name Test0", output.getFirstName());
-        assertEquals("Last Name Test0", output.getLastName());
-        assertEquals("Addres Test0", output.getAdress());
-        assertEquals("Male", output.getGender());
+        assertEquals("Title test0", output. getTitle());
+        assertEquals("Author name0", output.getAuthor());
+        assertEquals("2010-04-25", output.getLaunchDate());
+        assertEquals("150", output.getPrice());
     }
 
     @Test
     public void parserVOListToEntityListTest() {
-        List<Person> outputList = DozerMapper.parseListObjects(inputObject.mockVOList(), Person.class);
-        Person outputZero = outputList.get(0);
+        List<Book> outputList = DozerMapper.parseListObjects(inputObject.mockVOList(), Book.class);
+        Book outputZero = outputList.get(0);
         
         assertEquals(Long.valueOf(0L), outputZero.getId());
-        assertEquals("First Name Test0", outputZero.getFirstName());
-        assertEquals("Last Name Test0", outputZero.getLastName());
-        assertEquals("Addres Test0", outputZero.getAdress());
-        assertEquals("Male", outputZero.getGender());
+        assertEquals("Title test0", outputZero.getTitle());
+        assertEquals("Author name0", outputZero.getAuthor());
+        assertEquals("2010-04-25", outputZero.getLaunchDate());
+        assertEquals("150", outputZero.getPrice());
+
+        Book outputFive = outputList.get(5);
         
-        Person outputSeven = outputList.get(7);
+        assertEquals(Long.valueOf(5L), outputFive.getId());
+        assertEquals("Title test5", outputZero.getTitle());
+        assertEquals("Author name5", outputZero.getAuthor());
+        assertEquals("2010-04-25", outputZero.getLaunchDate());
+        assertEquals("150", outputZero.getPrice());
+
+        Book outputTen = outputList.get(10);
         
-        assertEquals(Long.valueOf(7L), outputSeven.getId());
-        assertEquals("First Name Test7", outputSeven.getFirstName());
-        assertEquals("Last Name Test7", outputSeven.getLastName());
-        assertEquals("Addres Test7", outputSeven.getAdress());
-        assertEquals("Female", outputSeven.getGender());
-        
-        Person outputTwelve = outputList.get(12);
-        
-        assertEquals(Long.valueOf(12L), outputTwelve.getId());
-        assertEquals("First Name Test12", outputTwelve.getFirstName());
-        assertEquals("Last Name Test12", outputTwelve.getLastName());
-        assertEquals("Addres Test12", outputTwelve.getAdress());
-        assertEquals("Male", outputTwelve.getGender());
+        assertEquals(Long.valueOf(10L), outputTen.getId());
+        assertEquals("Title test10", outputTen.getTitle());
+        assertEquals("Author name10", outputTen.getAuthor());
+        assertEquals("2010-04-25", outputTen.getLaunchDate());
+        assertEquals("150", outputTen.getPrice());
     }
 }
