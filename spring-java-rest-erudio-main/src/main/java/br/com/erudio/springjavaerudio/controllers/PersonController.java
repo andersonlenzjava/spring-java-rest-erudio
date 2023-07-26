@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Assim libera todas as requisições // se especificar o ip ou host vai liberar somente ele
+//@CrossOrigin
 @RestController
 @RequestMapping("/person/v1")
 @Tag(name = "People", description = "Endpoints for Managing People")
@@ -43,6 +45,7 @@ public class PersonController {
         return services.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}")
     @Operation(summary = "Finds a Person ", description = "Finds a Person ",
             tags = {"People"},
@@ -61,6 +64,7 @@ public class PersonController {
         return services.findById(id);
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080", "https://erudio.com.br"})
     @PostMapping()
     @Operation(summary = "Adds a new Person", description = "Adds a new Person by passing in a JSON representation",
             tags = {"People"},
