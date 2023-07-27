@@ -1,4 +1,4 @@
-package br.com.erudio.springjavaerudio.PersonService;
+package br.com.erudio.springjavaerudio.services.PersonService;
 
 import br.com.erudio.springjavaerudio.controllers.PersonController;
 import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;

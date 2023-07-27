@@ -1,16 +1,11 @@
 package br.com.erudio.springjavaerudio.PersonService.mockito.services;
 
 import br.com.erudio.springjavaerudio.BooksService.BooksService;
-import br.com.erudio.springjavaerudio.PersonService.PersonServices;
 import br.com.erudio.springjavaerudio.data.vo.v1.BookVO;
-import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;
 import br.com.erudio.springjavaerudio.model.book.Book;
-import br.com.erudio.springjavaerudio.model.person.Person;
 import br.com.erudio.springjavaerudio.repository.BookRepository;
-import br.com.erudio.springjavaerudio.repository.PersonRepository;
 import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockBook;
-import br.com.erudio.springjavaerudio.unittest.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

@@ -1,6 +1,6 @@
 package br.com.erudio.springjavaerudio.PersonService.mockito.services;
 
-import br.com.erudio.springjavaerudio.PersonService.PersonServices;
+import br.com.erudio.springjavaerudio.services.PersonService.PersonServices;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;
 import br.com.erudio.springjavaerudio.model.person.Person;
@@ -15,9 +15,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 

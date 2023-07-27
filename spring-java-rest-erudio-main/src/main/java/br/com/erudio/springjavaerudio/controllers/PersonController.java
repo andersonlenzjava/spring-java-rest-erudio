@@ -1,6 +1,6 @@
 package br.com.erudio.springjavaerudio.controllers;
 
-import br.com.erudio.springjavaerudio.PersonService.PersonServices;
+import br.com.erudio.springjavaerudio.services.PersonService.PersonServices;
 import br.com.erudio.springjavaerudio.data.vo.v1.PersonVO;
 import br.com.erudio.springjavaerudio.data.vo.v2.PersonVO2;
 import io.swagger.v3.oas.annotations.Operation;

@@ -3,6 +3,7 @@ package br.com.erudio.springjavaerudio.exceptions;
 import br.com.erudio.springjavaerudio.exceptions.handler.RequiredObjectIsNullException;
 import br.com.erudio.springjavaerudio.exceptions.handler.ResurceNotFoundExceptionException;
 import br.com.erudio.springjavaerudio.exceptions.handler.UnsupportedMathOperationException;
+import br.com.erudio.springjavaerudio.exceptions.handler.security.InvalidJwtAuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -63,6 +64,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthenticationException (
+            Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
     }
 
 
