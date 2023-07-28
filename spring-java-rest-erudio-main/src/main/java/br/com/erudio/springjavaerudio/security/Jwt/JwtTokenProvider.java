@@ -1,4 +1,4 @@
-package br.com.erudio.springjavaerudio.securityJwt;
+package br.com.erudio.springjavaerudio.security.Jwt;
 
 import br.com.erudio.springjavaerudio.data.vo.v1.security.TokenVO;
 import br.com.erudio.springjavaerudio.exceptions.handler.security.InvalidJwtAuthenticationException;
@@ -29,7 +29,7 @@ public class JwtTokenProvider {
     @Value("${security.jwt.token.secret-key:secret}")
     private String secretKey = "secret";
 
-    @Value("${security.jwt.token.expire-lenght:3600000}")
+    @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds = 3600000; // 1h
 
     @Autowired
@@ -115,7 +115,7 @@ public class JwtTokenProvider {
         return null;
     }
 
-    // método para validar o token
+    // método para validar o token em relação a data
     public boolean validateToken(String token) {
         DecodedJWT decodedJWT = decodedToken(token);
         try {
