@@ -14,6 +14,7 @@ import java.util.Objects;
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,7 +38,7 @@ public class User implements UserDetails, Serializable {
     // mapeamento bidirecional para construir o join colum
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_permission", joinColumns = {@JoinColumn (name = "id_user")},
-    inverseJoinColumns = {@JoinColumn (name = "id_permission")}
+        inverseJoinColumns = {@JoinColumn (name = "id_permission")}
     )
     private List<Permission> permissions;
 

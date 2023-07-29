@@ -20,7 +20,9 @@ spring:
     show-sql: true
 
 spring-doc:
-  pathsToMatch: /**/v1/**
+  pathsToMatch:
+    - /auth/**
+    - /**/v1/**
   swagger-ui:
     use-root-path: true
 

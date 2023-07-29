@@ -26,23 +26,23 @@ public class AuthServices {
     public ResponseEntity signin(AccountCredentialsVO data) {
         try {
             // pega as credenciais
-            var username = data.getUsername();
+            var userName = data.getUsername();
             var password = data.getPassword();
             // tenta fazer a autenticação
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password));
+                    new UsernamePasswordAuthenticationToken(userName, password));
 
-            var user = userRepository.findByUsername(username);
+            var user = userRepository.findByUsername(userName);
 
             var tokenResponse = new TokenVO();
 
             if (user != null) {
                 // getRoles foge da lógica do JPA foi implementado
 
-                tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
+                tokenResponse = tokenProvider.createAccessToken(userName, user.getRoles());
             } else {
                 // dá para fazer logger aqui disto
-                throw new UsernameNotFoundException("Username " + username + " not found!");
+                throw new UsernameNotFoundException("Username " + userName + " not found!");
             }
 
             return (ResponseEntity) ResponseEntity.ok(tokenResponse);
